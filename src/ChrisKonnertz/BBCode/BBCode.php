@@ -273,7 +273,7 @@ class BBCode
         switch ($tag->name) {
             case 'ul':
                 if ($tag->opening) {
-                    $listType = '<ul>';
+                    $code = '<ul>';
                 } else {
                     if ($this->endsWith($html, '<ul>')) {
                         $code = '</ul>';
@@ -286,7 +286,7 @@ class BBCode
                 break;
             case 'ol':
                 if ($tag->opening) {
-                    $listType = '<ol>';
+                    $code = '<ol>';
                 } else {
                     if ($this->endsWith($html, '<ol>')) {
                         $code = '</ol>';
