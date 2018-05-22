@@ -271,6 +271,44 @@ class BBCode
         }
 
         switch ($tag->name) {
+            case 'ul':
+                if ($tag->opening) {
+                    $listType = '<ul>';
+                } else {
+                    if ($this->endsWith($html, '<ul>')) {
+                        $code = '</ul>';
+                    } elseif ($this->endsWith($html, '</li>')) {
+                        $code = '</ul>';
+                    } else {
+                        $code = '</li></ul>';
+                    }
+                }
+                break;
+            case 'ol':
+                if ($tag->opening) {
+                    $listType = '<ol>';
+                } else {
+                    if ($this->endsWith($html, '<ol>')) {
+                        $code = '</ol>';
+                    } elseif ($this->endsWith($html, '</li>')) {
+                        $code = '</ol>';
+                    } else {
+                        $code = '</li></ol>';
+                    }
+                }
+                break;
+            case 'li':
+                if ($tag->opening) {
+                    /*
+                     * We require that the list item is inside a list
+                     */
+                    if (isset($openTags['list']) and sizeof($openTags['list']) > 0) {
+                        $code = '<li>';
+                    }
+                } else {
+                    $code = '</li>';
+                }
+                break;
             default:
                 // Custom tags:
                 foreach ($this->customTagClosures as $name => $closure) {
