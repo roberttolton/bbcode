@@ -506,6 +506,7 @@ class BBCode
      */
     protected function endsWith($haystack, $needle)
     {
+        $haystack = str_replace(array("\r", "\n"), '', $haystack);
         return ($needle === '' or mb_substr($haystack, -mb_strlen($needle)) === $needle);
     }
 }
