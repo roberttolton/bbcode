@@ -302,7 +302,7 @@ class BBCode
                     /*
                      * We require that the list item is inside a list
                      */
-                    if (isset($openTags['list']) and sizeof($openTags['list']) > 0) {
+                    if ((isset($openTags['ul']) and sizeof($openTags['ul']) > 0) || (isset($openTags['ol']) and sizeof($openTags['ol']) > 0)) {
                         $code = '<li>';
                     }
                 } else {
